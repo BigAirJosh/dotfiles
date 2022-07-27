@@ -443,6 +443,12 @@ globalkeys = mytable.join(
     awful.key({ }, "#71", function () os.execute("xbacklight -dec 10") end,
               {description = "-10%", group = "hotkeys"}),
 
+    -- Cider control
+    awful.key({ }, "#127", function () os.execute("curl http://localhost:9000/api/playback/playpause") end,
+              { description = "Cider play/pause", group = "hotkeys"}),
+    awful.key({ altkey }, "#127", function () os.execute("curl http://localhost:9000/api/playback/next") end,
+              { description = "Cider next", group = "hotkeys"}),
+
     -- pamixer volume control
     awful.key({ }, "#69",
         function ()
