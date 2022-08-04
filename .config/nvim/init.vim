@@ -73,6 +73,16 @@ Plug 'xolox/vim-session'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+"" ctrlp.vim
+Plug 'kien/ctrlp.vim'
+
+"" LSP
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Or build from source code by using yarn: https://yarnpkg.com
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
@@ -381,6 +391,14 @@ nnoremap <silent> <leader>e :FZF -m<CR>
 "Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
 
+"" coding
+" coc.nvim shortcuts
+" <CR> confirms completion
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+"<CR> confirms completeion even when first item isn't selected
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -460,6 +478,9 @@ function! s:build_go_files()
   endif
 endfunction
 
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
@@ -508,6 +529,7 @@ augroup go
   au FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
   au FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<cr>
   au FileType go nmap <leader>rb :<C-u>call <SID>build_go_files()<CR>
+  au FileType go nmap <leader>rn :GoRename<cr>
 
 augroup END
 
@@ -529,6 +551,7 @@ augroup vimrc-python
 augroup END
 
 " jedi-vim
+let g:jedi#environment_path = "env"
 let g:jedi#popup_on_dot = 0
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
@@ -536,7 +559,7 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-Space>"
+let g:jedi#completions_command = "<leader>;"
 let g:jedi#smart_auto_mappings = 0
 
 " ale

@@ -9,7 +9,7 @@ export OSH=/home/bigairjosh/.oh-my-bash
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="powerline-plain"
+OSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -121,9 +121,10 @@ fi
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
+# PATH
+export PATH=$PATH:/usr/local/go/bin:/home/bigairjosh/.local/bin
+
 
 # make sure the --git-dir is the same as the
 # directory where you created the repo above.
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-
-alias wallpaper="feh --bg-fill --randomize ~/wallpapers/"
